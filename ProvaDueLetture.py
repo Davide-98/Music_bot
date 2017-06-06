@@ -66,7 +66,6 @@ def youtube_search(options):
 
     videos = []
 
-
     print (search_response)
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#video":
