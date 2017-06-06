@@ -6,7 +6,6 @@ from apiclient.discovery import build
 import argparse
 import json
 
-
 #Funzione per leggere messaggi inviati al BOT
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
