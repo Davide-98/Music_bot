@@ -13,10 +13,15 @@ Per provare questo codice è necessario installare Python3 sul proprio computer 
 Tramite il gestore di pacchetti python (pip) eseguire
 
 ```
+pip install telepot
 pip install google-api-python-client telepot
 ```
 
-(...una volta installati i pacchetti che ci facciamo?...)
+Per avviare il programma sarà sufficiente eseguire da terminale:
+```
+python3 'nome_programma'.py
+```
+
 
 Per aggiungere il bot a Telegram basta cercare `@TESINA_MUSIC_bot` nella barra di ricerca di Telegram e avviarlo.
 
