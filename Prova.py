@@ -1,6 +1,6 @@
 #import sys
 import time
-import telepot     
+import telepot
 from apiclient.discovery import build
 #from apiclient.errors import HttpError
 import argparse
@@ -24,13 +24,17 @@ commandOk=False
 
 #Funzione per leggere messaggi inviati al BOT
 def commands(msg):
+    global commandOk
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
-        messaggio=msg['text']    
+        messaggio=msg['text']
         if messaggio == "/getSong":
-            commandOk=True
+            commandOk = True
+        elif commandOk:
+            bot.sendMessage(chat_id, 'Bravo hai inviato il comando {}'.format(messaggio))
         else:
             bot.sendMessage(chat_id ,'Comandi disponibili: /getSong')
+            commandOk = False
     else:
         bot.sendMessage(chat_id ,'Accetto solo messaggi di testo!')
 
@@ -42,7 +46,7 @@ def song(msg):
         argparser = argparse.ArgumentParser()
         argparser.add_argument("--q", help="Search term", default=messaggio)
         argparser.add_argument("--max-results", help="Max results", default=1)
-        args = argparser.parse_args()    
+        args = argparser.parse_args()
         #chiama la funzione con i parametri impostati
         youtube_search(args)
         videoID = youtube_search(args)
@@ -65,13 +69,13 @@ def youtube_search(options):
     risposta=json.loads(risposta)
 
 
-    return risposta['items'][0]['id']['videoId']      
+    return risposta['items'][0]['id']['videoId']
 
 
-                  
+
 #Programma principale
-if __name__ == "__main__":    
-    bot.getUpdates()   
+if __name__ == "__main__":
+    bot.getUpdates()
 
     if commandOk== False:
         r=bot.message_loop(commands)
